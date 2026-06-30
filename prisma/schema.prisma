@@ -45,6 +45,12 @@ enum KycStatus {
   requiere_revision
 }
 
+enum ProfileStatus {
+  activo
+  pausado
+  bloqueado
+}
+
 enum LedgerType {
   venta
   comision_msm
@@ -224,6 +230,17 @@ model Profile {
   kycCheckedAt        DateTime? @map("kyc_checked_at")
   chargebackPolicyAcceptedAt DateTime? @map("chargeback_policy_accepted_at")
   accountHoldReason   String?   @map("account_hold_reason")
+  avatarUrl           String?   @map("avatar_url")
+  bio                 String?
+  whatsapp            String?
+  preferredLanguage   String    @default("es") @map("preferred_language")
+  timezone            String?
+  notificationEmailEnabled    Boolean @default(true)  @map("notification_email_enabled")
+  notificationWhatsappEnabled Boolean @default(false) @map("notification_whatsapp_enabled")
+  status              ProfileStatus @default(activo)
+  lastLoginAt         DateTime? @map("last_login_at")
+  profileCompletedAt  DateTime? @map("profile_completed_at")
+  termsAcceptedAt     DateTime? @map("terms_accepted_at")
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
   seller              Seller?

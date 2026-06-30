@@ -40,6 +40,88 @@ export const signupSchema = z.object({
   next: z.string().optional()
 });
 
+export const strongPasswordSchema = z
+  .string()
+  .min(8, "La contrasena debe tener al menos 8 caracteres.")
+  .regex(/[a-z]/, "Incluye al menos una letra minuscula.")
+  .regex(/[A-Z]/, "Incluye al menos una letra mayuscula.")
+  .regex(/[0-9]/, "Incluye al menos un numero.");
+
+export const resetPasswordSchema = z
+  .object({
+    password: strongPasswordSchema,
+    confirmPassword: z.string().min(8, "Confirma la nueva contrasena.")
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Las contrasenas no coinciden.",
+    path: ["confirmPassword"]
+  });
+
+export const profileUpdateSchema = z.object({
+  fullName: z.string().min(3, "Escribe tu nombre completo."),
+  phone: z.string().min(7, "Escribe un telefono valido."),
+  whatsapp: z.string().max(40).optional().or(z.literal("")),
+  country: z.string().min(2, "Indica tu pais.").optional().or(z.literal("")),
+  address: z.string().max(300).optional().or(z.literal("")),
+  bio: z.string().max(500, "La bio admite hasta 500 caracteres.").optional().or(z.literal("")),
+  preferredLanguage: z.enum(["es", "en"]).default("es"),
+  timezone: z.string().max(80).optional().or(z.literal("")),
+  notificationEmailEnabled: z.string().optional(),
+  notificationWhatsappEnabled: z.string().optional()
+});
+
+export const avatarUploadSchema = z.object({
+  fileName: z.string().min(1, "Selecciona una imagen."),
+  fileType: z
+    .string()
+    .regex(/^image\/(png|jpe?g|webp|gif)$/i, "Sube una imagen PNG, JPG, WEBP o GIF."),
+  fileSize: z.coerce
+    .number()
+    .positive()
+    .max(5 * 1024 * 1024, "La imagen no puede superar 5MB.")
+});
+
+export const securityUpdateSchema = z
+  .object({
+    currentPassword: z.string().min(6, "Escribe tu contrasena actual."),
+    password: strongPasswordSchema,
+    confirmPassword: z.string().min(8, "Confirma la nueva contrasena.")
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Las contrasenas no coinciden.",
+    path: ["confirmPassword"]
+  });
+
+export const adminUserRoleSchema = z.object({
+  userId: z.string().uuid("ID de usuario invalido."),
+  role: z.enum([
+    "cliente",
+    "vendedor_vip",
+    "administrador",
+    "administrador_economico",
+    "superadmin"
+  ]),
+  note: z.string().max(500).optional().or(z.literal(""))
+});
+
+export const adminUserStatusSchema = z.object({
+  userId: z.string().uuid("ID de usuario invalido."),
+  status: z.enum(["activo", "pausado", "bloqueado"]),
+  reason: z.string().max(500).optional().or(z.literal(""))
+});
+
+export const adminUserKycSchema = z.object({
+  userId: z.string().uuid("ID de usuario invalido."),
+  status: z.enum(["pendiente", "aprobado", "rechazado", "requiere_revision"]),
+  riskLevel: z.enum(["normal", "revision", "alto", "bloqueado"]).default("normal"),
+  note: z.string().max(500).optional().or(z.literal(""))
+});
+
+export const adminUserNoteSchema = z.object({
+  userId: z.string().uuid("ID de usuario invalido."),
+  note: z.string().min(3, "Escribe una nota.").max(700)
+});
+
 export const sellerKycSchema = z.object({
   fullName: z.string().min(3),
   phone: z.string().min(7),

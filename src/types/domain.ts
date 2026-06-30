@@ -32,6 +32,20 @@ export const sellerLevels = [
 
 export type SellerLevel = (typeof sellerLevels)[number];
 
+export const profileStatuses = ["activo", "pausado", "bloqueado"] as const;
+export type ProfileStatus = (typeof profileStatuses)[number];
+
+export const kycStatuses = ["pendiente", "aprobado", "rechazado", "requiere_revision"] as const;
+export type KycStatus = (typeof kycStatuses)[number];
+
+export const adminManageableRoles = [
+  "cliente",
+  "vendedor_vip",
+  "administrador",
+  "administrador_economico",
+  "superadmin"
+] as const;
+
 export const paymentMethodStatuses = ["activo", "pausado", "oculto"] as const;
 export type PaymentMethodStatus = (typeof paymentMethodStatuses)[number];
 
