@@ -31,21 +31,29 @@ export const passwordResetSchema = z.object({
   email: z.string().email("Escribe un correo valido.")
 });
 
-export const signupSchema = z.object({
-  fullName: z.string().min(3, "Escribe tu nombre completo."),
-  phone: z.string().min(7, "Escribe un telefono valido."),
-  email: z.string().email("Escribe un correo valido."),
-  password: z.string().min(6, "La contrasena debe tener al menos 6 caracteres."),
-  roleIntent: z.enum(["cliente", "vendedor_vip"]).default("cliente"),
-  next: z.string().optional()
-});
-
 export const strongPasswordSchema = z
   .string()
   .min(8, "La contrasena debe tener al menos 8 caracteres.")
   .regex(/[a-z]/, "Incluye al menos una letra minuscula.")
   .regex(/[A-Z]/, "Incluye al menos una letra mayuscula.")
   .regex(/[0-9]/, "Incluye al menos un numero.");
+
+export const signupSchema = z
+  .object({
+    fullName: z.string().min(3, "Escribe tu nombre completo."),
+    phone: z.string().min(7, "Escribe un telefono valido."),
+    email: z.string().email("Escribe un correo valido."),
+    country: z.string().min(2, "Selecciona tu pais."),
+    password: strongPasswordSchema,
+    confirmPassword: z.string().min(8, "Confirma tu contrasena."),
+    roleIntent: z.enum(["cliente", "vendedor_vip"]).default("cliente"),
+    terms: z.literal("on", { message: "Debes aceptar los terminos de MSM MY STORE." }),
+    next: z.string().optional()
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Las contrasenas no coinciden.",
+    path: ["confirmPassword"]
+  });
 
 export const resetPasswordSchema = z
   .object({

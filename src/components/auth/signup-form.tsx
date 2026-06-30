@@ -7,6 +7,22 @@ import { Input, Select } from "@/components/ui/input";
 import { signup } from "@/server/actions/auth";
 import { emptyActionResult } from "@/types/actions";
 
+const countries = [
+  "Cuba",
+  "Estados Unidos",
+  "Espana",
+  "Mexico",
+  "Canada",
+  "Italia",
+  "Brasil",
+  "Argentina",
+  "Chile",
+  "Colombia",
+  "Panama",
+  "Republica Dominicana",
+  "Otro"
+];
+
 export function SignupForm({ next }: { next?: string }) {
   const [state, formAction, pending] = useActionState(signup, emptyActionResult);
 
@@ -16,11 +32,33 @@ export function SignupForm({ next }: { next?: string }) {
       <Input name="fullName" placeholder="Nombre completo" required />
       <Input name="phone" type="tel" placeholder="Telefono / WhatsApp" required />
       <Input name="email" type="email" placeholder="Correo" required />
+      <Select name="country" defaultValue="Cuba" aria-label="Pais" required>
+        {countries.map((country) => (
+          <option key={country} value={country}>
+            {country}
+          </option>
+        ))}
+      </Select>
       <Input name="password" type="password" placeholder="Contrasena" required />
+      <Input name="confirmPassword" type="password" placeholder="Confirmar contrasena" required />
+      <p className="text-xs font-semibold text-slate-500">
+        Minimo 8 caracteres con mayuscula, minuscula y numero.
+      </p>
       <Select name="roleIntent" defaultValue="cliente">
         <option value="cliente">Cliente comprador</option>
         <option value="vendedor_vip">Quiero ser vendedor VIP</option>
       </Select>
+
+      <label className="flex items-start gap-2 text-sm font-semibold text-slate-600">
+        <input type="checkbox" name="terms" className="mt-1 h-4 w-4 rounded border-msm-silver" required />
+        <span>
+          Acepto los{" "}
+          <Link href="/terms" className="text-msm-blue underline underline-offset-4">
+            terminos y politicas
+          </Link>{" "}
+          de MSM MY STORE.
+        </span>
+      </label>
 
       {state.message ? (
         <div
@@ -33,6 +71,9 @@ export function SignupForm({ next }: { next?: string }) {
           {state.message}
           {state.ok ? (
             <div className="mt-2 flex flex-wrap gap-2">
+              <Link href="/account/profile" className="underline underline-offset-4">
+                Completar perfil
+              </Link>
               <Link href="/account/kyc" className="underline underline-offset-4">
                 Validar cuenta
               </Link>

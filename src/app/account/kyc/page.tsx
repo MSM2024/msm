@@ -1,5 +1,6 @@
 import { AppShell } from "@/components/ui/shell";
 import { Badge } from "@/components/ui/badge";
+import { AccountNav } from "@/components/account/account-nav";
 import { CustomerKycForm } from "@/components/forms/customer-kyc-form";
 import { getCustomerKycAppSession } from "@/lib/kyc/customer-kyc-app";
 import { createAdminClient } from "@/lib/supabase/admin";
@@ -38,6 +39,9 @@ export default async function CustomerKycPage() {
         <div>
           <Badge>Cuenta MSM</Badge>
           <h1 className="mt-3 text-3xl font-bold">Validacion del cliente</h1>
+          <div className="mt-4">
+            <AccountNav />
+          </div>
           <p className="mt-2 text-slate-600">
             Guarda los datos que MSM usa para validar identidad, metodo de pago, trazabilidad de pedidos y
             proteccion contra contracargos o reclamaciones maliciosas.

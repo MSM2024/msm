@@ -40,6 +40,11 @@ export function buildElianaContext() {
     "Rutas principales:",
     "- /products: productos y servicios por pais, estado/provincia, ciudad/municipio y VIP.",
     "- /auth/signup: crear cuenta de cliente o iniciar solicitud para vendedor VIP.",
+    "- /auth/login: iniciar sesion.",
+    "- /auth/forgot-password: recuperar la contrasena por correo.",
+    "- /account: resumen de la cuenta del cliente.",
+    "- /account/profile: completar perfil, subir foto y preferencias.",
+    "- /account/security: cambiar contrasena y cerrar sesion.",
     "- /account/kyc: validar datos de cliente, titular de pago, documento y aceptacion antifraude.",
     "- /remittances: solicitud de remesas.",
     "- /orders: seguimiento de ordenes.",
@@ -67,8 +72,16 @@ export function getDemoElianaReply(message: string, mode: ElianaMode = "customer
     return "YO SOY ELIANA. Para protegerte, primero crea cuenta en /auth/signup y completa KYC en /account/kyc. Despues crea la orden o remesa. La cuenta exacta solo se muestra dentro de esa operacion; no uses cuentas viejas ni mensajes externos. Luego abre /orders y sube el comprobante con captura, referencia, monto, moneda, metodo y nombre de quien envio.";
   }
 
-  if (text.includes("cuenta") || text.includes("registr") || text.includes("perfil")) {
-    return "YO SOY ELIANA. Para empezar con mas seguridad, crea tu cuenta en /auth/signup. Despues valida tus datos en /account/kyc: nombre legal, telefono, pais, documento, titular del pago y aceptacion contra contracargos falsos. Luego revisa productos por zona en /products y sigue tus ordenes en /orders.";
+  if (text.includes("contrasena") || text.includes("clave") || text.includes("olvide") || text.includes("recuperar") || text.includes("password")) {
+    return "YO SOY ELIANA. Si olvidaste tu clave, abre /auth/forgot-password y te enviaremos un enlace seguro por correo. Desde ese enlace defines una nueva contrasena en /auth/reset-password. Para cambiarla estando dentro de tu cuenta, ve a /account/security.";
+  }
+
+  if (text.includes("foto") || text.includes("avatar") || text.includes("imagen de perfil")) {
+    return "YO SOY ELIANA. Para subir o cambiar tu foto de perfil, entra a /account/profile, elige una imagen (PNG, JPG, WEBP o GIF hasta 5MB) y guarda. Tambien puedes editar nombre, telefono, pais, bio, idioma y notificaciones desde ahi.";
+  }
+
+  if (text.includes("cuenta") || text.includes("registr") || text.includes("perfil") || text.includes("iniciar sesion") || text.includes("login")) {
+    return "YO SOY ELIANA. Para empezar con mas seguridad, crea tu cuenta en /auth/signup o entra en /auth/login. Completa tu perfil y foto en /account/profile, valida tus datos en /account/kyc (nombre legal, telefono, pais, documento, titular del pago y aceptacion antifraude) y gestiona tu acceso en /account/security. Si necesitas ayuda abre /support.";
   }
 
   if (text.includes("remesa")) {

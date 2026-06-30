@@ -52,6 +52,27 @@ export const elianaCommandIntents: ElianaCommandIntent[] = [
     keywords: ["cuenta", "registrar", "registro", "signup", "kyc", "validar"]
   },
   {
+    id: "profile",
+    label: "Completar perfil",
+    description: "Edita tus datos, sube tu foto y ajusta preferencias.",
+    href: "/account/profile",
+    keywords: ["perfil", "foto", "avatar", "editar perfil", "datos", "notificaciones"]
+  },
+  {
+    id: "recover",
+    label: "Recuperar contrasena",
+    description: "Recibe un enlace seguro por correo para restablecer tu clave.",
+    href: "/auth/forgot-password",
+    keywords: ["contrasena", "clave", "password", "olvide", "recuperar", "restablecer"]
+  },
+  {
+    id: "login",
+    label: "Iniciar sesion",
+    description: "Entra a tu cuenta MSM MY STORE.",
+    href: "/auth/login",
+    keywords: ["iniciar sesion", "entrar", "login", "acceder"]
+  },
+  {
     id: "wallet",
     label: "Billetera MSM",
     description: "Abre la billetera digital preparada para saldos, reservas y ledger.",
