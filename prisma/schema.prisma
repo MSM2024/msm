@@ -261,6 +261,7 @@ model Profile {
   walletTransactions  WalletTransaction[]
   walletLoadRequests  WalletLoadRequest[] @relation("WalletLoadRequestUser")
   walletLoadReviews   WalletLoadReview[] @relation("WalletLoadReviewReviewer")
+  whatsappCarts       WhatsAppCart[]
   walletReviewedLoads WalletLoadRequest[] @relation("WalletLoadRequestReviewer")
   walletHolds         WalletHold[]
   walletScoreEvents   WalletScoreEvent[]
