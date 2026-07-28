@@ -90,7 +90,7 @@ export async function registerPayout(_: ActionResult, formData: FormData): Promi
     });
 
     revalidatePath("/dashboard/economic");
-    revalidatePath("/dashboard/don-miguel");
+    revalidatePath("/dashboard");
     return { ok: true, message: "Payout registrado y ledger actualizado.", id: payout.id };
   } catch (error) {
     return { ok: false, message: error instanceof Error ? error.message : "No se pudo registrar el payout." };

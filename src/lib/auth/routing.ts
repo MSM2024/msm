@@ -19,7 +19,7 @@ export function resolvePostAuthPath(next: string | null | undefined, status?: st
     if (role === "vendedor_vip") path = "/dashboard/vip";
     else if (role === "administrador") path = "/dashboard/admin";
     else if (role === "administrador_economico") path = "/dashboard/economic";
-    else if (role === "superadmin") path = "/dashboard/admin";
+    else if (role === "superadmin") path = "/dashboard";
     else path = "/dashboard";
   }
 

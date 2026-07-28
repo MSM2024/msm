@@ -452,7 +452,7 @@ export async function reviewPaymentProof(_: ActionResult, formData: FormData): P
 
   revalidatePath("/dashboard/economic");
   revalidatePath("/dashboard/vip");
-  revalidatePath("/dashboard/don-miguel");
+  revalidatePath("/dashboard");
   revalidatePath("/orders");
   return { ok: true, message: `Revision guardada: ${parsed.data.decision}.` };
 }

@@ -377,7 +377,7 @@ export async function updateRemittanceStatus(_: ActionResult, formData: FormData
   });
 
   revalidatePath("/dashboard/economic");
-  revalidatePath("/dashboard/don-miguel");
+  revalidatePath("/dashboard");
   revalidatePath("/remittances");
   return { ok: true, message: `Remesa ${before.remittance_number} actualizada a ${parsed.data.status}.` };
 }
@@ -645,7 +645,7 @@ export async function reviewRemittancePaymentProof(_: ActionResult, formData: Fo
   });
 
   revalidatePath("/dashboard/economic");
-  revalidatePath("/dashboard/don-miguel");
+  revalidatePath("/dashboard");
   revalidatePath("/remittances");
   return { ok: true, message: `Revision de remesa guardada: ${parsed.data.decision}.` };
 }

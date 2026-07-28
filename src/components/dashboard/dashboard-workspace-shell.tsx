@@ -66,9 +66,8 @@ const roleConfig: Record<UserRole, { title: string; subtitle: string; href: stri
   superadmin: {
     title: "Panel superadmin",
     subtitle: "Vista completa MSM: operaciones, economia, tecnologia, direccion y beta.",
-    href: "/dashboard/don-miguel",
+    href: "/dashboard/admin",
     items: [
-      ["Don Miguel", "/dashboard/don-miguel", BarChart3, "Metricas ejecutivas."],
       ["Admin", "/dashboard/admin", LayoutDashboard, "Control total de tiendas y usuarios."],
       ["Usuarios", "/dashboard/admin/users", UsersRound, "Roles, KYC, estado y auditoria."],
       ["Economia", "/dashboard/economic", CreditCard, "Pagos, ledger y liquidaciones."],

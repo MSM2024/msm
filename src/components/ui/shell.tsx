@@ -41,7 +41,6 @@ const panelLinks = [
   ["VIP", "/dashboard/vip"],
   ["Admin", "/dashboard/admin"],
   ["Economia", "/dashboard/economic"],
-  ["Don Miguel", "/dashboard/don-miguel"],
   ["La Maquina del Futuro", "/dashboard/maquina-del-futuro"]
 ] as const;
 

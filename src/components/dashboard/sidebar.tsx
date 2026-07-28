@@ -73,12 +73,7 @@ const nav: NavCategory[] = [
       { label: "Panel Economico", href: "/dashboard/economic", icon: CreditCard, roles: ["administrador_economico", "superadmin"] },
     ],
   },
-  {
-    label: "Ejecutivo",
-    items: [
-      { label: "Don Miguel", href: "/dashboard/don-miguel", icon: BarChart3, roles: ["administrador", "administrador_economico", "superadmin"] },
-    ],
-  },
+
   {
     label: "La Maquina del Futuro",
     items: [
